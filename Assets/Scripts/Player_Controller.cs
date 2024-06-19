@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
+    [SerializeField] private Game_Manager gm;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float[] _posX;
@@ -50,5 +52,18 @@ public class Player_Controller : MonoBehaviour
     {
         _isRight = !_isRight;
         transform.Rotate(0f,180f,0f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Score"))
+        {
+            gm._score++;
+        }
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            gm.GameOver();
+        }
     }
 }    

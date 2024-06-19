@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class Game_Manager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public int _score = 0;
+    [SerializeField] private TMP_Text _scoreText;
+    
     void Start()
     {
         
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        _scoreText.text = _score.ToString();
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene(0);
     }
 }
